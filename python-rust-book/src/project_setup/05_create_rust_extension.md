@@ -1,4 +1,4 @@
-# Create Rust extension to the project
+# Setup Rust extension
 
 We will now add a Rust extension to our project. We will use [maturin](https://www.maturin.rs/) to build the Rust extension. Maturin is a command-line tool to build and publish crates with pyo3, rust-cpython and cffi bindings as well as rust binaries as Python packages.
 
