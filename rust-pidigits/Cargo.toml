@@ -1,0 +1,13 @@
+[package]
+name = "rust-pidigits"
+version = "0.2.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "rust_pidigits"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = "0.20.2"
+rug = { version = "1.22.0", features = ["float", "integer"] }

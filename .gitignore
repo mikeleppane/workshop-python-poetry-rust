@@ -1,0 +1,7 @@
+**/target/
+
+.git
+.vscode
+**/__pycache__
+**/.mypy_cache
+**/book
