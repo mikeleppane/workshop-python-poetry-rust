@@ -93,7 +93,6 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
     "Intended Audience :: Developers",
 ]
-dynamic = ["version"]
 ```
 
 Then the final thing we need to do is to add a couple of Rust dependencies to the `Cargo.toml` file:

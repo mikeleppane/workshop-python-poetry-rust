@@ -34,7 +34,7 @@ Docker is an open platform for developing, shipping, and running applications. D
 
 ### 2.1. Install Python 3.8+
 
-A good way to install Python 3.8+ is to use [pyenv](https://github.com/pyenv/pyenv)
+A good way to install Python 3.10+ is to use [pyenv](https://github.com/pyenv/pyenv)
 
 ```bash
 curl https://pyenv.run | bash
@@ -404,7 +404,6 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
     "Intended Audience :: Developers",
 ]
-dynamic = ["version"]
 ```
 
 Then the final thing we need to do is to add a couple of Rust dependencies to the `Cargo.toml` file:
@@ -474,16 +473,12 @@ fn binary_split(a: u32, b: u32) -> (Integer, Integer, Integer) {
 
 pub fn chudnovsky(digits: u32) -> PyResult<String> {
     match digits {
-        0 => {
-            return Err(PyValueError::new_err(
-                "Invalid digits: must be greater than 0",
-            ))
-        }
-        1 => return Ok("3".to_string()),
+        0 => return Ok("3".to_string()),
+        1 => return Ok("3.1".to_string()),
         _ => {
             if digits.checked_mul(4).is_none() {
                 return Err(PyValueError::new_err(
-                    "Invalid digits: must be less than (2^32-1)/4",
+                    "Invalid digits: value must be between 0 <= x < (2^32-1)/4",
                 ));
             }
         }
@@ -562,17 +557,17 @@ MAX_DIGITS = math.ceil((2**32 - 1) / 4)
 
 @app.get("/pidigits/")
 async def pidigits(
-    digits: Annotated[int, Query(gt=0, lt=MAX_DIGITS)],
+    digits: Annotated[int, Query(ge=0, lt=MAX_DIGITS)],
     limit: Annotated[int | None, Query(gt=0, lt=MAX_DIGITS)] = None,
 ) -> str:
     try:
         if limit is not None:
             return chudnovsky_pi(digits)[: limit + 2]
         return chudnovsky_pi(digits)[: digits + 2]
-    except ValueError:
+    except (ValueError, OverflowError) as ex:
         raise HTTPException(
             status_code=400,
-            detail="Invalid digits: must be a positive integer and less than 2^32/4",
+            detail=str(ex),
         )
 
 

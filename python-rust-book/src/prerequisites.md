@@ -8,11 +8,11 @@
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-## Install Python 3.8+
+## Install Python 3.10+
 
-In this workshop we will use Python 3.12 but any Python 3.8+ version should work.
+In this workshop we will use Python 3.12 but any Python 3.10+ version should work.
 
-A good way to install Python 3.8+ is to use [pyenv](https://github.com/pyenv/pyenv)
+A good way to install Python 3.10+ is to use [pyenv](https://github.com/pyenv/pyenv)
 
 ```bash
 curl https://pyenv.run | bash

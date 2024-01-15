@@ -16,7 +16,6 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
     "Intended Audience :: Developers",
 ]
-dynamic = ["version"]
 
 [tool.poetry]
 name = "pi-api"

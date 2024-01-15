@@ -46,16 +46,12 @@ fn binary_split(a: u32, b: u32) -> (Integer, Integer, Integer) {
 
 pub fn chudnovsky(digits: u32) -> PyResult<String> {
     match digits {
-        0 => {
-            return Err(PyValueError::new_err(
-                "Invalid digits: must be greater than 0",
-            ))
-        }
-        1 => return Ok("3".to_string()),
+        0 => return Ok("3".to_string()),
+        1 => return Ok("3.1".to_string()),
         _ => {
             if digits.checked_mul(4).is_none() {
                 return Err(PyValueError::new_err(
-                    "Invalid digits: must be less than (2^32-1)/4",
+                    "Invalid digits: value must be between 0 <= x < (2^32-1)/4",
                 ));
             }
         }
