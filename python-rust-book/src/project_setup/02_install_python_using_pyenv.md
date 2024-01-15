@@ -32,3 +32,9 @@ Python 3.12.0
 ```
 
 This command creates a .python-version file in your current directory. If you have pyenv active in your environment, this file will automatically activate this version for you.
+
+```admonish warning title="Maximum Performance"
+By default, `pyenv` does not enable profile-guided optimization (PGO) and link-time optimization (LTO) when building the interpreter. If you want to get the maximum performance out of your Python code, you should enable the `--enable-optimizations` flag. This will result in a faster interpreter at the cost of significantly longer build times.
+
+See more detail info [here](https://github.com/pyenv/pyenv/blob/master/plugins/python-build/README.md#building-for-maximum-performance)
+```

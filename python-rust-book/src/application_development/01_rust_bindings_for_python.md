@@ -98,10 +98,24 @@ The `allow_threads` temporarily releases the GIL, thus allowing other Python thr
 The `PyResult` type is a wrapper around `Result` that is used to return errors from Python functions. You can read more about PyO3's error handling [here](https://pyo3.rs/v0.20.2/function/error_handling).
 ```
 
-Now we are ready to build our Rust extension. We will use `maturin` to build our Rust extension. Running `maturin build` will produce a wheel file in the `rust-pidigits/target/wheels` directory. The wheel file will be named `pidigits-0.1.0-cp312-cp312-manylinux_2_34_x86_64.whl` (your version may differ). The wheel file contains the compiled Rust code and the Python bindings. The wheel file can be installed with pip. 
+Now we are ready to build our Rust extension. We will use `maturin` to build our Rust extension. Running `maturin build` will produce a wheel file in the `rust-pidigits/target/wheels` directory. The wheel file will be named `pidigits-0.1.0-cp312-cp312-manylinux_2_34_x86_64.whl` (your version may differ). The wheel file contains the compiled Rust code and the Python bindings. The wheel file can be installed with pip.
 
 ```admonish info title="Wheel Files"
+A Python .whl file is essentially a ZIP (.zip) archive with a specially crafted filename that tells installers what Python versions and platforms the wheel will support. 
+
+`{dist}-{version}(-{build})?-{python}-{abi}-{platform}.whl`
+
+In our case the wheel file is named `pidigits-0.1.0-cp312-cp312-manylinux_2_34_x86_64.whl` => `pidigits` is the name of the distribution, `0.1.0` is the version, `cp312` is the Python version, `cp312` is the ABI tag, `manylinux_2_34_x86_64` is the platform tag. So this wheel file will work with Python 3.12 on Linux with AMD64 (x86-64) architecture. 
+
+The `manylinux` wheel tag is a platform tag that indicates that the wheel will be compatible with all versions of Linux that support the manylinux standard. The manylinux standard is a standard for Linux distributions that allows Python wheels to be shared across multiple Linux distributions. You can read more about the manylinux standard [here](https://www.python.org/dev/peps/pep-0513/)
+
 More info about wheel files can be found [here](https://packaging.python.org/en/latest/specifications/binary-distribution-format/#binary-distribution-format).
+```
+
+```admonish info title="ABI"
+By default, Python extension modules can only be used with the same Python version they were compiled against. For example, an extension module built for Python 3.5 can't be imported in Python 3.8. [PEP 384](https://docs.python.org/3/c-api/stable.html#stable) introduced the idea of the limited Python API, which would have a stable ABI enabling extension modules built with it to be used against multiple Python versions. This is also known as abi3.
+
+Check out `py03`'s docs about [building and distribution](https://pyo3.rs/latest/building_and_distribution) for more info.
 ```
 
 ```bash
