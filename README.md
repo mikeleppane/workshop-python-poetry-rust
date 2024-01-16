@@ -1,5 +1,49 @@
 # Workshop - Create Python API service with FastAPI using Poetry, Rust bindings for Python and Docker
 
+## Table of Contents
+
+- [Workshop - Create Python API service with FastAPI using Poetry, Rust bindings for Python and Docker](#workshop---create-python-api-service-with-fastapi-using-poetry-rust-bindings-for-python-and-docker)
+  - [Table of Contents](#table-of-contents)
+  - [1. Introduction](#1-introduction)
+    - [1.1. What is FastAPI?](#11-what-is-fastapi)
+    - [1.2. What is Poetry?](#12-what-is-poetry)
+    - [1.3. What is Rust?](#13-what-is-rust)
+    - [1.4. What is Docker?](#14-what-is-docker)
+  - [2. Prerequisites](#2-prerequisites)
+    - [2.1. Install Python 3.10+](#21-install-python-310)
+    - [2.2. Install Poetry](#22-install-poetry)
+    - [2.3. Install Rust](#23-install-rust)
+    - [2.4. Install Docker](#24-install-docker)
+    - [2.5 Visual Studio Code](#25-visual-studio-code)
+    - [2.6 Repository Structure](#26-repository-structure)
+  - [3. Project Setup](#3-project-setup)
+    - [3.1. Create a new project with Poetry](#31-create-a-new-project-with-poetry)
+    - [3.2 Install Python using pyenv](#32-install-python-using-pyenv)
+    - [3.3 Create a new virtual environment](#33-create-a-new-virtual-environment)
+    - [3.4 Add Python dependencies](#34-add-python-dependencies)
+      - [Poetry add](#poetry-add)
+      - [Poetry lock](#poetry-lock)
+      - [Poetry install](#poetry-install)
+      - [Poetry update](#poetry-update)
+      - [About pyproject.toml](#about-pyprojecttoml)
+    - [3.5 Add Rust extension to the project](#35-add-rust-extension-to-the-project)
+  - [4. Application Development](#4-application-development)
+    - [4.1. Rust bindings for Python](#41-rust-bindings-for-python)
+    - [4.2. Python API service](#42-python-api-service)
+    - [4.3. Run the API service](#43-run-the-api-service)
+  - [5. Containerization](#5-containerization)
+    - [5.1 .dockerignore](#51-dockerignore)
+    - [5.2. Dockerfile](#52-dockerfile)
+    - [5.3. docker-compose.yml](#53-docker-compose.yml)
+    - [5.4. Run the API service with docker-compose](#54-run-the-api-service-with-docker-compose)
+  - [Appendix A: Poetry commands](#appendix-a-poetry-commands)
+  - [Appendix B: maturin commands](#appendix-b-maturin-commands)
+  - [Appendix C: Python extensions](#appendix-c-python-extensions)
+
+
+
+This workshop is also available as a [mdbook](https://pi-api-rouge.vercel.app/book/index.html)
+
 ## 1. Introduction
 
 This tutorial will show you how to create a Python API service with FastAPI using Poetry, Rust bindings for Python and Docker.
@@ -32,7 +76,7 @@ Docker is an open platform for developing, shipping, and running applications. D
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-### 2.1. Install Python 3.8+
+### 2.1. Install Python 3.10+
 
 A good way to install Python 3.10+ is to use [pyenv](https://github.com/pyenv/pyenv)
 
@@ -737,8 +781,7 @@ uvicorn pidigits.main:app --host 0.0.0.0 --port 8000
 
 This file will be used as the entrypoint for our Docker image. The entrypoint is the command that is executed when the container is started. You can read more about Docker's entrypoint [here](https://docs.docker.com/engine/reference/builder/#entrypoint).
 
-
-### 5.2. docker-compose.yml
+### 5.3. docker-compose.yml
 
 Even though we can run our API service with Docker, it's not very convenient. We have to build the Docker image and then run the Docker container. We can make this process a lot easier by using docker-compose. We will create a docker-compose.yml file to run our API service. 
 Create a new file called `docker-compose.yml` in the root of the project and add the following code to it:
@@ -766,7 +809,7 @@ services:
 
 Now we are ready to run our API service with docker-compose! 🎉
 
-### 5.3. Run the API service with docker-compose
+### 5.4. Run the API service with docker-compose
 
 ```bash
 docker-compose up -d
@@ -845,10 +888,9 @@ Using Rust extension in Python is not the only way to speed up Python code or if
 
 ### cffi
 
-[C Foreign Function Interface for Python](https://cffi.readthedocs.io/en/stable/). Interact with almost any C code from Python, based on C-like declarations that you can often copy-paste from header files or documentation. 
+[C Foreign Function Interface for Python](https://cffi.readthedocs.io/en/stable/). Interact with almost any C code from Python, based on C-like declarations that you can often copy-paste from header files or documentation.
 
-
-## Appendix D: mdbook 
+## Appendix D: mdbook
 
 This workshop is also available as a [mdbook](https://rust-lang.github.io/mdBook/). If you want to build the mdbook, you need to install mdbook. You can install mdbook with the following command:
 
