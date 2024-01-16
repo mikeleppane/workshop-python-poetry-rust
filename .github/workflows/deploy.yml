@@ -29,7 +29,7 @@ jobs:
           name: mdbook-admonish
 
       - name: Generate static content for the book
-        run: mdbook build
+        run: mdbook build ./python-rust-book
 
       - name: Setup Node.js (required to install Vercel CLI)
         uses: actions/setup-node@v3
